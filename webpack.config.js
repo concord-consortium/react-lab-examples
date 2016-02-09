@@ -6,7 +6,8 @@ module.exports = {
     'simple-embed': './js/simple-embed.js',
     'observe-and-set': './js/observe-and-set.js',
     'observe-and-set-model-only': './js/observe-and-set-model-only.js',
-    'delay-props-update': './js/delay-props-update.js'
+    'delay-props-update': './js/delay-props-update.js',
+    'logging': './js/logging.js'
   },
   output: {
     path: path.join(__dirname, 'dist'),

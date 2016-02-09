@@ -47,7 +47,7 @@ class Interactive extends React.Component {
   render() {
     return (
       <div>
-        <Lab interactive={interactive} model={model} width='450px' height='300px' playing={this.state.labPlaying}
+        <Lab interactive={interactive} model={model} height='380px' playing={this.state.labPlaying}
              props={this.state.labProps} observedProps={['targetTemperature']}
              onPropChange={this.labPropChanged}/>
         <div>

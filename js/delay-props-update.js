@@ -32,7 +32,7 @@ class Interactive extends React.Component {
   render() {
     return (
       <div>
-        <Lab interactive={interactive} model={model} width='450px' playing={true}
+        <Lab interactive={interactive} model={model} width='450px' height='345px' playing={true}
              props={this.state.labProps} observedProps={['targetTemperature']}
              propsUpdateDelay={800}
              onPropChange={this.labPropChanged}/>
