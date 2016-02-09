@@ -84,28 +84,16 @@
 
 	    _get(Object.getPrototypeOf(Interactive.prototype), 'constructor', this).call(this, props);
 	    this.state = {
-	      labProps: {
-	        targetTemperature: 4000
-	      }
+	      logs: []
 	    };
-	    this.labPropChanged = this.labPropChanged.bind(this);
-	    this.handleInputChange = this.handleInputChange.bind(this);
+	    this.handleLog = this.handleLog.bind(this);
 	  }
 
 	  _createClass(Interactive, [{
-	    key: 'labPropChanged',
-	    value: function labPropChanged(name, val) {
-	      if (name === 'targetTemperature') {
-	        this.setState({ labProps: { targetTemperature: val } });
-	      }
-	    }
-	  }, {
-	    key: 'handleInputChange',
-	    value: function handleInputChange(event) {
-	      var newTemp = parseFloat(event.target.value);
-	      if (isNaN(newTemp)) newTemp = 0;
-	      if (newTemp > 5000) newTemp = 5000;
-	      this.setState({ labProps: { targetTemperature: newTemp } });
+	    key: 'handleLog',
+	    value: function handleLog(action, data) {
+	      this.state.logs.unshift('[' + new Date().toLocaleTimeString() + '] ' + action + ': ' + JSON.stringify(data));
+	      this.setState({ logs: this.state.logs.slice(0, 100) });
 	    }
 	  }, {
 	    key: 'render',
@@ -114,16 +102,16 @@
 	        'div',
 	        null,
 	        _react2['default'].createElement(_reactLab2['default'], { interactive: _interactiveJson2['default'], model: _modelJson2['default'], width: '450px', height: '345px', playing: true,
-	          props: this.state.labProps, observedProps: ['targetTemperature'],
-	          propsUpdateDelay: 800,
-	          onPropChange: this.labPropChanged }),
+	          onLogEvent: this.handleLog }),
 	        _react2['default'].createElement(
 	          'div',
 	          null,
-	          'Target temperature:',
-	          _react2['default'].createElement('input', { type: 'text', value: this.state.labProps.targetTemperature, onChange: this.handleInputChange }),
-	          _react2['default'].createElement('input', { type: 'range', value: this.state.labProps.targetTemperature, onChange: this.handleInputChange,
-	            min: '0', max: '5000' })
+	          'Logs:',
+	          _react2['default'].createElement(
+	            'pre',
+	            null,
+	            this.state.logs.join('\n')
+	          )
 	        )
 	      );
 	    }
