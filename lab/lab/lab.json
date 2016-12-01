@@ -25,6 +25,9 @@
       "showBottomBar": {
         "defaultValue": true
       },
+      "credits": {
+        "defaultValue": ""
+      },
       "padding": {
         "defaultValue": 10
       },
@@ -1313,11 +1316,14 @@
           "defaultValue": false,
           "storeInTickHistory": true
         },
-        "useThreeLetterCode": {
-          "defaultValue": true
-        },
         "aminoAcidColorScheme": {
           "defaultValue": "hydrophobicity"
+        },
+        "aminoAcidLabels": {
+          "defaultValue": true
+        },
+        "useThreeLetterCode": {
+          "defaultValue": true
         },
         "showChargeSymbols": {
           "defaultValue": true
@@ -1416,6 +1422,9 @@
         },
         "forceVectorsDirectionOnly": {
           "defaultValue": false
+        },
+        "onAtomDrag": {
+          "defaultValue": "translate"
         }
       },
       "atom": {
@@ -1898,6 +1907,9 @@
         },
         "rotation": {
           "defaultValue": 0
+        },
+        "scale": {
+          "defaultValue": 1
         },
         "opacity": {
           "defaultValue": 1
