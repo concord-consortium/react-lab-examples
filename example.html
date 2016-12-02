@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset=utf-8>
+  <title>Example</title>
+  <style>
+    html {
+      font-family: Helvetica, Arial, sans-serif;
+    }
+    iframe {
+      margin-bottom: 20px;
+    }
+    input {
+      margin: 10px;
+      vertical-align: middle;
+    }
+    pre {
+      display: inline;
+    }
+    .desc {
+      margin-bottom: 10px;
+      max-width: 600px;
+    }
+    .logs {
+      width: 800px;
+      height: 220px;
+      display: block;
+      background: #eee;
+      overflow: scroll;
+    }
+    .source-cont {
+      width: 100%;
+      background: #eee;
+      padding: 4px;
+      margin-bottom: 15px;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="source-cont">
+    Source: <a id="source" target="_blank" href=""></a>
+  </div>
+  <div id="app"></div>
+  <script>
+    // Insert script.
+    var scriptName = window.location.search.substr(1);
+    var scr = document.createElement('script');
+    scr.setAttribute('type', 'text/javascript');
+    scr.setAttribute('src', scriptName);
+    var body = document.getElementsByTagName('body')[0];
+    body.insertBefore(scr, body.firstChild);
+    // Insert link to source.
+    var url = 'https://github.com/concord-consortium/react-lab-examples/blob/master/js/' + scriptName;
+    var a = document.getElementById('source');
+    a.setAttribute('href', url);
+    a.innerText = url;
+  </script>
+</body>
+</html>

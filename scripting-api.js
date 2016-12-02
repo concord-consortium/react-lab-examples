@@ -60,10 +60,6 @@
 
 	var _reactLab2 = _interopRequireDefault(_reactLab);
 
-	var _interactive = __webpack_require__(179);
-
-	var _interactive2 = _interopRequireDefault(_interactive);
-
 	var _model = __webpack_require__(180);
 
 	var _model2 = _interopRequireDefault(_model);
@@ -84,30 +80,21 @@
 
 	    var _this = _possibleConstructorReturn(this, (Interactive.__proto__ || Object.getPrototypeOf(Interactive)).call(this, props));
 
-	    _this.state = {
-	      labProps: {
-	        targetTemperature: 4000
-	      }
-	    };
-	    _this.labPropChanged = _this.labPropChanged.bind(_this);
-	    _this.handleInputChange = _this.handleInputChange.bind(_this);
+	    _this.addAtom = _this.addAtom.bind(_this);
+	    _this.removeAtom = _this.removeAtom.bind(_this);
 	    return _this;
 	  }
 
 	  _createClass(Interactive, [{
-	    key: 'labPropChanged',
-	    value: function labPropChanged(name, val) {
-	      if (name === 'targetTemperature') {
-	        this.setState({ labProps: { targetTemperature: val } });
-	      }
+	    key: 'addAtom',
+	    value: function addAtom() {
+	      this.api.addRandomAtom();
 	    }
 	  }, {
-	    key: 'handleInputChange',
-	    value: function handleInputChange(event) {
-	      var newTemp = parseFloat(event.target.value);
-	      if (isNaN(newTemp)) newTemp = 0;
-	      if (newTemp > 5000) newTemp = 5000;
-	      this.setState({ labProps: { targetTemperature: newTemp } });
+	    key: 'removeAtom',
+	    value: function removeAtom() {
+	      var randomAtom = Math.floor(Math.random() * this.api.getNumberOfAtoms());
+	      this.api.removeAtom(randomAtom);
 	    }
 	  }, {
 	    key: 'render',
@@ -115,36 +102,27 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'desc' },
-	          'Sometimes you might want to batch Lab properties update, e.g. when Lab\'s ',
-	          _react2.default.createElement(
-	            'pre',
-	            null,
-	            'onChange'
-	          ),
-	          ' scripts are expensive. Use ',
-	          _react2.default.createElement(
-	            'pre',
-	            null,
-	            'propsUpdateDelay'
-	          ),
-	          ' property.'
-	        ),
-	        _react2.default.createElement(_reactLab2.default, { interactive: _interactive2.default, model: _model2.default, width: '450px', height: '345px', playing: true,
-	          props: this.state.labProps, observedProps: ['targetTemperature'],
-	          propsUpdateDelay: 800,
-	          onPropChange: this.labPropChanged }),
+	        _react2.default.createElement(_reactLab2.default, { ref: 'lab', model: _model2.default, height: '380px', playing: true }),
 	        _react2.default.createElement(
 	          'div',
 	          null,
-	          'Target temperature:',
-	          _react2.default.createElement('input', { type: 'text', value: this.state.labProps.targetTemperature, onChange: this.handleInputChange }),
-	          _react2.default.createElement('input', { type: 'range', value: this.state.labProps.targetTemperature, onChange: this.handleInputChange,
-	            min: '0', max: '5000' })
+	          _react2.default.createElement(
+	            'button',
+	            { onClick: this.addAtom },
+	            'Add Atom'
+	          ),
+	          _react2.default.createElement(
+	            'button',
+	            { onClick: this.removeAtom },
+	            'Remove Atom'
+	          )
 	        )
 	      );
+	    }
+	  }, {
+	    key: 'api',
+	    get: function get() {
+	      return this.refs.lab.scriptingAPI;
 	    }
 	  }]);
 
@@ -23348,126 +23326,7 @@
 	;
 
 /***/ },
-/* 179 */
-/***/ function(module, exports) {
-
-	module.exports = {
-		"title": "Charged and Neutral Atoms",
-		"publicationStatus": "sample",
-		"subtitle": "Explore Coulomb and intermolecular attractions.",
-		"about": [
-			"There are two kinds of attractive forces shown in this model: Coulomb forces (the attraction between ions)",
-			"and Van der Waals forces (an additional attractive force between all atoms).",
-			"",
-			"What kinds of patterns tend to form with charged and neutral atoms? How does changing the Van der Waals",
-			"attraction or charging the atoms affect the melting and boiling point of the substance?"
-		],
-		"models": [
-			{
-				"type": "md2d",
-				"id": "100-atoms-charged",
-				"url": "models-converted/lab-version/1/md2d/conversion-and-physics-examples/100-atoms$0.json",
-				"viewOptions": {
-					"controlButtons": "play_reset"
-				},
-				"onLoad": ""
-			}
-		],
-		"parameters": [
-			{
-				"name": "charge",
-				"initialValue": false,
-				"onChange": [
-					"batch(function(){",
-					"  var count = getNumberOfAtoms();",
-					"  var chargeVal;",
-					"  if (value) { chargeVal = 1.5 } else { chargeVal = 0; }",
-					"  for (var i=0; i < count; i++) {",
-					"    setAtomProperties(i, {charge: chargeVal}, false, false);",
-					"    chargeVal *= -1;",
-					"  }",
-					"  set('chargeShading', value);",
-					"});"
-				]
-			},
-			{
-				"name": "epsilon",
-				"initialValue": 0.14,
-				"onChange": "setElementProperties(2, { epsilon: -value });"
-			}
-		],
-		"components": [
-			{
-				"type": "checkbox",
-				"id": "charged-box",
-				"text": "Charge",
-				"property": "charge"
-			},
-			{
-				"type": "slider",
-				"id": "epsilon-slider",
-				"min": 0.075,
-				"max": 0.3,
-				"displayValue": "return format('.3f')(value)",
-				"labels": [
-					{
-						"value": 0.075,
-						"label": "Weak"
-					},
-					{
-						"value": 0.3,
-						"label": "Strong"
-					}
-				],
-				"steps": 199,
-				"title": "Van der Waals attraction",
-				"property": "epsilon"
-			},
-			{
-				"type": "slider",
-				"id": "temperature-slider",
-				"min": 0,
-				"max": 5000,
-				"displayValue": "return format('f')(value)",
-				"labels": [
-					{
-						"value": 0,
-						"label": "0 K"
-					},
-					{
-						"value": 5000,
-						"label": "5000 K"
-					}
-				],
-				"steps": 500,
-				"title": "Temperature",
-				"property": "targetTemperature"
-			},
-			{
-				"type": "barGraph",
-				"id": "thermometer",
-				"property": "temperature",
-				"units": true,
-				"labelFormat": "3r",
-				"min": 0,
-				"max": 5000
-			}
-		],
-		"layout": {
-			"right": [
-				"thermometer"
-			],
-			"bottom": [
-				[
-					"charged-box",
-					"epsilon-slider",
-					"temperature-slider"
-				]
-			]
-		}
-	};
-
-/***/ },
+/* 179 */,
 /* 180 */
 /***/ function(module, exports) {
 
