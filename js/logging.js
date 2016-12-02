@@ -25,7 +25,7 @@ class Interactive extends React.Component {
              onLogEvent={this.handleLog}/>
         <div>
           Logs:
-          <pre>
+          <pre className='logs'>
             {this.state.logs.join('\n')}
           </pre>
         </div>

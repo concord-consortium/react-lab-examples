@@ -32,6 +32,8 @@ class Interactive extends React.Component {
   render() {
     return (
       <div>
+        <div className="desc">Sometimes you might want to batch Lab properties update, e.g. when Lab's <pre>onChange</pre> scripts
+          are expensive. Use <pre>propsUpdateDelay</pre> property.</div>
         <Lab interactive={interactive} model={model} width='450px' height='345px' playing={true}
              props={this.state.labProps} observedProps={['targetTemperature']}
              propsUpdateDelay={800}

@@ -4,8 +4,9 @@ var CopyWebpackPlugin = require('copy-webpack-plugin');
 module.exports = {
   entry: {
     'simple-embed': './js/simple-embed.js',
+    'model-only': './js/model-only.js',
     'observe-and-set': './js/observe-and-set.js',
-    'observe-and-set-model-only': './js/observe-and-set-model-only.js',
+    'scripting-api': './js/scripting-api.js',
     'delay-props-update': './js/delay-props-update.js',
     'logging': './js/logging.js'
   },
