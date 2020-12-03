@@ -15,26 +15,32 @@ module.exports = {
     filename: "[name].js"
   },
   module: {
-    loaders: [
+    rules: [
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
-        loader: 'babel-loader',
-        query: {
-          presets: ['es2015', 'react']
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-react']
+          }
         }
-      },
-      {
-        test: /\.json$/,
-        loader: 'json-loader'
-      },
+      }
     ]
   },
   plugins: [
-    new CopyWebpackPlugin([
-      {from: 'public'},
-      // Copy Lab standalone distribution provided together with react-lab module.
-      {from: 'node_modules/react-lab/dist/lab', to: 'lab/'}
-    ])
-  ]
+    new CopyWebpackPlugin({
+      patterns: [
+        {from: 'public'},
+        // Copy Lab standalone distribution provided together with react-lab module.
+        {from: 'node_modules/react-lab/dist/lab', to: 'lab/'}
+      ]
+    })
+  ],
+  resolve: {
+    alias: {
+      react: path.resolve('./node_modules/react'),
+      'react-dom': path.resolve('./node_modules/react-dom')
+    }
+  }
 };
