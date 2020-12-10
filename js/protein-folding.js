@@ -1,13 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Lab from 'react-lab';
-import model from '../json/simple-model.json';
+import interactive from '../json/protein-folding-interactive.json';
+import model from '../json/protein-folding-model.json';
 
 class Interactive extends React.Component {
   render() {
     return (
       <div>
-        <Lab model={model} height='380px' playing={true}/>
+        <Lab interactive={interactive} model={model} width='450px' height='400px' playing={true}/>
       </div>
     );
   }
