@@ -1,0 +1,68 @@
+{
+  "title": "Вода и масло",
+  "publicationStatus": "sample",
+  "subtitle": "Исследуем взаимодействие полярных и неполярных веществ",
+  "about": [
+    "Хорошо известно, что вода и масло не смешиваются. А почему? Попробуйте ",
+    "выяснить это экспериментируя с молекулярной моделью. В ней полярные молекулы ",
+    "воды представлены в виде голубых и белых сферических частичек, а неполярные молекулы ",
+    "масла - в виде серых частичек. Нажатием кнопки \"Встряхивание смеси масла и воды\" вы ",
+    "приведите молекулы масло и воды во взаимодействие. Далее вы можете наблюдать за тем, как ",
+    "модель демонстрирует процессы, происходящие на молекулярном уровне."
+  ],
+  "i18nMetadata": "locales/metadata/oil-and-water.json",
+  "lang": "ru",
+  "models": [
+    {
+      "type": "md2d",
+      "id": "page3$1",
+      "url": "models/oil-and-water/oil-and-water.json",
+      "viewOptions": {
+        "controlButtons": "play_reset",
+        "textBoxes": [
+          {
+            "text": "Разделение масла и воды в растворе",
+            "x": 0.5,
+            "y": 2.0,
+            "fontScale": 1.3,
+            "layer": 1,
+            "frame": "rounded rectangle",
+            "backgroundColor": "rgb(245,245,245)"
+          }
+        ]
+      }
+    },
+    {
+      "type": "md2d",
+      "id": "oilAndWaterMix",
+      "url": "models/oil-and-water/oil-and-water-mix.json",
+      "viewOptions": {
+        "controlButtons": "play_reset",
+        "textBoxes": [
+          {
+            "text": "Смесь масла и воды, образовавшаяся после встряхивания",
+            "x": -0.025,
+            "y": 2.0,
+            "fontScale": 1.3,
+            "layer": 1,
+            "frame": "rounded rectangle",
+            "backgroundColor": "rgb(245,245,245)"
+          }
+        ]
+      }
+    }
+  ],
+  "components": [
+    {
+      "type": "button",
+      "id": "shake",
+      "text": "Взболтать смесь масла и воды",
+      "action": "loadModel('oilAndWaterMix');"
+    }
+  ],
+  "layout": {
+    "bottom": [
+      "shake"
+    ]
+  }
+}
