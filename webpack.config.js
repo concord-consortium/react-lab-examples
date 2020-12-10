@@ -1,3 +1,4 @@
+var webpack = require('webpack');
 var path = require('path');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 
@@ -8,7 +9,9 @@ module.exports = {
     'observe-and-set': './js/observe-and-set.js',
     'scripting-api': './js/scripting-api.js',
     'delay-props-update': './js/delay-props-update.js',
-    'logging': './js/logging.js'
+    'logging': './js/logging.js',
+    'dna': './js/dna.js',
+    'protein-folding': './js/protein-folding.js',
   },
   output: {
     path: path.join(__dirname, 'dist'),
@@ -29,6 +32,10 @@ module.exports = {
     ]
   },
   plugins: [
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery'
+    }),
     new CopyWebpackPlugin({
       patterns: [
         {from: 'public'},

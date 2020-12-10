@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Lab from 'react-lab';
-import interactive from './interactive.json';
-import model from './model.json';
+import interactive from '../json/simple-interactive.json';
+import model from '../json/simple-model.json';
 
 class Interactive extends React.Component {
   render() {

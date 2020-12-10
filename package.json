@@ -32,8 +32,9 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
+    "jquery": "^3.5.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-lab": "0.11.0"
+    "react-lab": "1.0.0-pre.1"
   }
 }

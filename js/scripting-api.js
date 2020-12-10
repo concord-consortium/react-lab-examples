@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Lab from 'react-lab';
-import model from './model.json';
+import model from '../json/simple-model.json';
 
 class Interactive extends React.Component {
   constructor(props) {
